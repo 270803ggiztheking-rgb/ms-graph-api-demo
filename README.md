@@ -1,3 +1,5 @@
+![Microsoft Graph API Integration](banner.png)
+
 # 🔗 Microsoft Graph API Demo
 
 Demo de integración con Microsoft Graph API usando Python (FastAPI).
