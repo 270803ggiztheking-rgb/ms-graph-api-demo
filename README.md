@@ -40,7 +40,7 @@ Demo de integración con Microsoft Graph API usando Python (FastAPI).
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/tu-usuario/ms-graph-api-demo.git
+git clone https://github.com/270803ggiztheking-rgb/ms-graph-api-demo.git
 cd ms-graph-api-demo
 
 # Crear entorno virtual
@@ -115,4 +115,4 @@ MIT License
 
 **Gael L. Chulim G.**  
 Freelance Developer & Automation Specialist  
-[LinkedIn](https://linkedin.com/in/tu-perfil) | [GitHub](https://github.com/tu-usuario)
+[LinkedIn](https://www.linkedin.com/in/gael-chulim) | [GitHub](https://github.com/270803ggiztheking-rgb)
