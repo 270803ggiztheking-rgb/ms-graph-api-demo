@@ -1,5 +1,5 @@
 import httpx
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional
 from src.core.config import settings
 from src.core.exceptions import GraphAPIException
 from loguru import logger
@@ -43,7 +43,7 @@ class GraphClient:
                 logger.error(f"Graph API Error: {e.response.text}")
                 try:
                     details = e.response.json()
-                except:
+                except Exception:
                     details = {"raw": e.response.text}
                 raise GraphAPIException(
                     status_code=e.response.status_code,
