@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Graph API Demo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i data-lucide="layout-grid" style="color: var(--primary-color);"></i>
+                    <span style="font-weight: 600; font-size: 18px;">Graph Demo</span>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">
+                            <i data-lucide="home" class="nav-icon"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/auth.html" class="nav-link">
+                            <i data-lucide="key" class="nav-icon"></i>
+                            Authentication
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/user.html" class="nav-link">
+                            <i data-lucide="user" class="nav-icon"></i>
+                            User Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/mail.html" class="nav-link">
+                            <i data-lucide="mail" class="nav-icon"></i>
+                            Mail
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/calendar.html" class="nav-link">
+                            <i data-lucide="calendar" class="nav-icon"></i>
+                            Calendar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/files.html" class="nav-link">
+                            <i data-lucide="file-text" class="nav-icon"></i>
+                            Files
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/docs.html" class="nav-link">
+                            <i data-lucide="book-open" class="nav-icon"></i>
+                            Documentation
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                <small style="color: var(--text-secondary);">
+                    Microsoft Graph API Demo<br>
+                    v1.0.0
+                </small>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1 class="page-title">Welcome to Microsoft Graph API Demo</h1>
+                <a href="https://github.com/270803ggiztheking-rgb/ms-graph-api-demo" target="_blank" class="btn btn-outline">
+                    <i data-lucide="github" style="margin-right: 8px; width: 16px;"></i>
+                    View on GitHub
+                </a>
+            </header>
+
+            <!-- Introduction Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Project Overview</h2>
+                </div>
+                <p class="mb-3">
+                    This project demonstrates how to integrate with Microsoft Graph API using Python (FastAPI) for the backend and a static frontend for demonstration purposes.
+                    Explore the various use cases below to see simulated API interactions and learn about the underlying implementation.
+                </p>
+                <div class="status-badge status-success" style="display: inline-block;">
+                    Interactive Demo Mode
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <h2 class="mt-3 mb-2" style="font-size: 20px;">Explore Features</h2>
+            <div class="grid-3">
+                <!-- Auth Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i data-lucide="key" style="color: var(--primary-color);"></i>
+                            <h3 class="card-title">Authentication</h3>
+                        </div>
+                    </div>
+                    <p class="mb-3" style="color: var(--text-secondary); font-size: 14px;">
+                        Secure OAuth2 authentication flow using MSAL (Microsoft Authentication Library).
+                    </p>
+                    <a href="pages/auth.html" class="btn btn-primary" style="width: 100%;">Try Demo</a>
+                </div>
+
+                <!-- User Profile Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i data-lucide="user" style="color: var(--primary-color);"></i>
+                            <h3 class="card-title">User Profile</h3>
+                        </div>
+                    </div>
+                    <p class="mb-3" style="color: var(--text-secondary); font-size: 14px;">
+                        Fetch and display current user details, photo, and properties from Azure AD.
+                    </p>
+                    <a href="pages/user.html" class="btn btn-primary" style="width: 100%;">Try Demo</a>
+                </div>
+
+                <!-- Mail Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i data-lucide="mail" style="color: var(--primary-color);"></i>
+                            <h3 class="card-title">Mail</h3>
+                        </div>
+                    </div>
+                    <p class="mb-3" style="color: var(--text-secondary); font-size: 14px;">
+                        Read, send, and organize emails. View message details and attachments.
+                    </p>
+                    <a href="pages/mail.html" class="btn btn-primary" style="width: 100%;">Try Demo</a>
+                </div>
+
+                <!-- Calendar Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i data-lucide="calendar" style="color: var(--primary-color);"></i>
+                            <h3 class="card-title">Calendar</h3>
+                        </div>
+                    </div>
+                    <p class="mb-3" style="color: var(--text-secondary); font-size: 14px;">
+                        Manage events, schedule meetings, and view calendar availability.
+                    </p>
+                    <a href="pages/calendar.html" class="btn btn-primary" style="width: 100%;">Try Demo</a>
+                </div>
+
+                <!-- Files Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i data-lucide="file-text" style="color: var(--primary-color);"></i>
+                            <h3 class="card-title">Files</h3>
+                        </div>
+                    </div>
+                    <p class="mb-3" style="color: var(--text-secondary); font-size: 14px;">
+                        Access OneDrive files, list directory contents, and manage documents.
+                    </p>
+                    <a href="pages/files.html" class="btn btn-primary" style="width: 100%;">Try Demo</a>
+                </div>
+
+                <!-- Documentation Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i data-lucide="book-open" style="color: var(--primary-color);"></i>
+                            <h3 class="card-title">Documentation</h3>
+                        </div>
+                    </div>
+                    <p class="mb-3" style="color: var(--text-secondary); font-size: 14px;">
+                        Technical architecture, setup guides, and API reference documentation.
+                    </p>
+                    <a href="pages/docs.html" class="btn btn-outline" style="width: 100%;">Read Docs</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

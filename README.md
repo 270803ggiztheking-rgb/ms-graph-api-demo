@@ -4,6 +4,8 @@
 
 This is a robust, production-ready implementation of a Microsoft Graph API integration using FastAPI. It features a modular architecture, comprehensive error handling, and type-safe interactions with the Graph API.
 
+**[🚀 View Interactive Demo](https://270803ggiztheking-rgb.github.io/ms-graph-api-demo/)**
+
 ## Features
 
 - **Modular Architecture**: Clean separation of concerns (API, Services, Core, Models).
@@ -12,6 +14,7 @@ This is a robust, production-ready implementation of a Microsoft Graph API integ
 - **Error Handling**: Centralized exception handling and structured logging.
 - **Docker Ready**: Includes Dockerfile and Docker Compose setup.
 - **Testing**: Unit tests with pytest.
+- **Interactive Demo**: A static frontend hosted on GitHub Pages that simulates the API.
 
 ## Project Structure
 
@@ -24,9 +27,15 @@ src/
 ├── services/           # Business logic (AuthService, MailService, etc.)
 ├── models/             # Pydantic models (Domain entities)
 └── main.py             # Application entry point
+
+docs/                   # Static Demo Site (GitHub Pages)
+├── css/
+├── js/
+├── pages/
+└── index.html
 ```
 
-## Setup
+## Setup (Backend)
 
 1. **Clone the repository**
 2. **Create .env file**
@@ -50,6 +59,18 @@ src/
 Once running, access the interactive API docs at:
 - Swagger UI: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
+
+## Interactive Demo Site
+
+This repository includes a static website in the `docs/` folder that serves as a frontend demonstration of the project's capabilities. It uses a **Mock API** to simulate Microsoft Graph responses, allowing you to explore the UI flows without needing a live backend or Azure AD configuration.
+
+### Running the Demo Locally
+
+Simply open `docs/index.html` in your web browser.
+
+### Deployment
+
+The demo site is automatically deployed to GitHub Pages via GitHub Actions whenever changes are pushed to the `main` branch.
 
 ## Use Cases
 

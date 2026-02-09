@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication - Microsoft Graph API Demo</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../js/mock-api.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i data-lucide="layout-grid" style="color: var(--primary-color);"></i>
+                    <span style="font-weight: 600; font-size: 18px;">Graph Demo</span>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">
+                            <i data-lucide="home" class="nav-icon"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="auth.html" class="nav-link active">
+                            <i data-lucide="key" class="nav-icon"></i>
+                            Authentication
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="user.html" class="nav-link">
+                            <i data-lucide="user" class="nav-icon"></i>
+                            User Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mail.html" class="nav-link">
+                            <i data-lucide="mail" class="nav-icon"></i>
+                            Mail
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="calendar.html" class="nav-link">
+                            <i data-lucide="calendar" class="nav-icon"></i>
+                            Calendar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="files.html" class="nav-link">
+                            <i data-lucide="file-text" class="nav-icon"></i>
+                            Files
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="docs.html" class="nav-link">
+                            <i data-lucide="book-open" class="nav-icon"></i>
+                            Documentation
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                <small style="color: var(--text-secondary);">
+                    Microsoft Graph API Demo<br>
+                    v1.0.0
+                </small>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1 class="page-title">Authentication Demo</h1>
+                <div id="auth-status-indicator" class="status-badge status-error">Not Authenticated</div>
+            </header>
+
+            <div class="grid-2">
+                <!-- Login Control Panel -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Sign In</h2>
+                    </div>
+                    <p class="mb-3">
+                        Simulate the OAuth 2.0 authorization code flow. This will trigger a mock login process and return a valid access token.
+                    </p>
+                    
+                    <div id="login-section">
+                        <button id="login-btn" class="btn btn-primary">
+                            <i data-lucide="log-in" style="margin-right: 8px; width: 16px;"></i>
+                            Sign in with Microsoft
+                        </button>
+                    </div>
+
+                    <div id="logout-section" class="hidden">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                            <div style="width: 40px; height: 40px; background-color: #0078d4; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">DU</div>
+                            <div>
+                                <div style="font-weight: 600;">Demo User</div>
+                                <div style="font-size: 12px; color: var(--text-secondary);">demo.user@m365x123456.onmicrosoft.com</div>
+                            </div>
+                        </div>
+                        <button id="logout-btn" class="btn btn-outline">
+                            <i data-lucide="log-out" style="margin-right: 8px; width: 16px;"></i>
+                            Sign Out
+                        </button>
+                    </div>
+
+                    <div id="loading-spinner" class="loading-spinner hidden"></div>
+                </div>
+
+                <!-- Token Display -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Access Token</h2>
+                    </div>
+                    <p class="mb-3" style="font-size: 14px; color: var(--text-secondary);">
+                        This token is sent in the Authorization header for all Graph API requests: <code>Authorization: Bearer {token}</code>
+                    </p>
+                    <pre id="token-display" style="height: 200px; overflow-y: auto;">// Token will appear here after login...</pre>
+                </div>
+            </div>
+
+            <!-- Flow Explanation -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h2 class="card-title">How it works</h2>
+                </div>
+                <div class="grid-3">
+                    <div>
+                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 8px;">1. Authorization Request</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary);">
+                            The app redirects the user to the Microsoft identity platform endpoint. The user signs in and consents to permissions.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 8px;">2. Token Exchange</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary);">
+                            The platform returns an authorization code. The app exchanges this code for an access token using its client secret (backend).
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 8px;">3. API Access</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary);">
+                            The app uses the access token to call Microsoft Graph API on behalf of the user.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // UI Elements
+        const loginBtn = document.getElementById('login-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const loginSection = document.getElementById('login-section');
+        const logoutSection = document.getElementById('logout-section');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const tokenDisplay = document.getElementById('token-display');
+        const statusIndicator = document.getElementById('auth-status-indicator');
+
+        // Login Handler
+        loginBtn.addEventListener('click', async () => {
+            loginSection.classList.add('hidden');
+            loadingSpinner.classList.remove('hidden');
+
+            try {
+                const result = await mockGraphAPI.login();
+                
+                // Simulate delay is handled in mock-api
+                
+                // Update UI
+                updateUIState(true, result);
+            } catch (error) {
+                console.error("Login failed", error);
+                alert("Login failed. Please try again.");
+                loginSection.classList.remove('hidden');
+            } finally {
+                loadingSpinner.classList.add('hidden');
+            }
+        });
+
+        // Logout Handler
+        logoutBtn.addEventListener('click', async () => {
+            logoutSection.classList.add('hidden');
+            loadingSpinner.classList.remove('hidden');
+
+            try {
+                await mockGraphAPI.logout();
+                updateUIState(false);
+            } catch (error) {
+                console.error("Logout failed", error);
+            } finally {
+                loadingSpinner.classList.add('hidden');
+                loginSection.classList.remove('hidden');
+            }
+        });
+
+        // Update UI Helper
+        function updateUIState(isAuthenticated, data = null) {
+            if (isAuthenticated) {
+                loginSection.classList.add('hidden');
+                logoutSection.classList.remove('hidden');
+                
+                statusIndicator.textContent = 'Authenticated';
+                statusIndicator.className = 'status-badge status-success';
+                
+                if (data) {
+                    tokenDisplay.textContent = JSON.stringify(data, null, 2);
+                }
+            } else {
+                loginSection.classList.remove('hidden');
+                logoutSection.classList.add('hidden');
+                
+                statusIndicator.textContent = 'Not Authenticated';
+                statusIndicator.className = 'status-badge status-error';
+                
+                tokenDisplay.textContent = '// Token will appear here after login...';
+            }
+        }
+    </script>
+</body>
+</html>
