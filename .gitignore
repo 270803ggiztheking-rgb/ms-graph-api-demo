@@ -23,6 +23,9 @@ Thumbs.db
 
 # Logs
 *.log
+flake8.log
+bandit.log
+pytest_report.txt
 
 # Testing
 .pytest_cache/

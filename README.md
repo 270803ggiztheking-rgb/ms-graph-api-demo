@@ -70,7 +70,15 @@ Simply open `docs/index.html` in your web browser.
 
 ### Deployment
 
-The demo site is automatically deployed to GitHub Pages via GitHub Actions whenever changes are pushed to the `main` branch.
+The demo site can be easily deployed to GitHub Pages using the included PowerShell script.
+
+1. Ensure your changes in the `docs/` folder are committed.
+2. Run the deployment script:
+   ```powershell
+   ./deploy.ps1
+   ```
+3. This will push the content of the `docs/` folder to the `gh-pages` branch.
+4. Ensure GitHub Pages is enabled in your repository settings (Source: `Deploy from a branch`, Branch: `gh-pages`).
 
 ## Use Cases
 
