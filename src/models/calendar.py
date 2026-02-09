@@ -2,17 +2,21 @@ from pydantic import BaseModel, EmailStr
 from typing import List, Optional
 from datetime import datetime
 
+
 class DateTimeTimeZone(BaseModel):
     dateTime: str
     timeZone: str = "UTC"
+
 
 class EmailAddressWrapper(BaseModel):
     address: EmailStr
     name: Optional[str] = None
 
+
 class EventAttendee(BaseModel):
     type: str = "required"
     emailAddress: EmailAddressWrapper
+
 
 class Event(BaseModel):
     id: str
@@ -21,6 +25,7 @@ class Event(BaseModel):
     end: DateTimeTimeZone
     location: Optional[dict] = None
     attendees: List[EventAttendee] = []
+
 
 class CreateEventRequest(BaseModel):
     subject: str

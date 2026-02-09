@@ -8,16 +8,22 @@ from src.api.deps import get_graph_client
 
 router = APIRouter()
 
+
 @router.get("/files", response_model=List[FileItem])
-async def get_files(folder: str = "root", client: GraphClient = Depends(get_graph_client)):
+async def get_files(
+    folder: str = "root", client: GraphClient = Depends(get_graph_client)
+):
     """
     Get files from OneDrive.
     """
     service = DriveService(client)
     return await service.get_files(folder_path=folder)
 
+
 @router.get("/files/{item_id}/download")
-async def download_file(item_id: str, client: GraphClient = Depends(get_graph_client)):
+async def download_file(
+        item_id: str,
+        client: GraphClient = Depends(get_graph_client)):
     """
     Download a file from OneDrive.
     """
@@ -25,8 +31,10 @@ async def download_file(item_id: str, client: GraphClient = Depends(get_graph_cl
     content = await service.download_file(item_id)
     return Response(content=content, media_type="application/octet-stream")
 
+
 @router.post("/files/upload", response_model=FileItem)
-async def upload_file(file: UploadFile = File(...), client: GraphClient = Depends(get_graph_client)):
+async def upload_file(file: UploadFile = File(...),
+                      client: GraphClient = Depends(get_graph_client)):
     """
     Upload a file to OneDrive root.
     """

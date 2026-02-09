@@ -1,6 +1,7 @@
 from src.core.graph_client import GraphClient
 from src.models.user import UserProfile
 
+
 class UserService:
     def __init__(self, client: GraphClient):
         self.client = client

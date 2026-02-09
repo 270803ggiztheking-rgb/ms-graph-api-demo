@@ -6,6 +6,7 @@ from src.api.deps import get_graph_client
 
 router = APIRouter()
 
+
 @router.get("/me", response_model=UserProfile)
 async def get_me(client: GraphClient = Depends(get_graph_client)):
     """

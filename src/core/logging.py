@@ -5,6 +5,7 @@ from typing import cast
 
 from loguru import logger
 
+
 class InterceptHandler(logging.Handler):
     def emit(self, record: logging.LogRecord) -> None:  # pragma: no cover
         # Get corresponding Loguru level if it exists
@@ -22,6 +23,7 @@ class InterceptHandler(logging.Handler):
         logger.opt(depth=depth, exception=record.exc_info).log(
             level, record.getMessage()
         )
+
 
 def setup_logging():
     # intercept everything at the root logger
