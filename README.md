@@ -1,118 +1,78 @@
-![Microsoft Graph API Integration](banner.png)
+# Microsoft Graph API Demo (Refactored)
 
-# 🔗 Microsoft Graph API Demo
+This is a robust, production-ready implementation of a Microsoft Graph API integration using FastAPI. It features a modular architecture, comprehensive error handling, and type-safe interactions with the Graph API.
 
-Demo de integración con Microsoft Graph API usando Python (FastAPI).
+## Features
 
-## 🚀 Características
+- **Modular Architecture**: Clean separation of concerns (API, Services, Core, Models).
+- **Authentication**: Secure OAuth 2.0 flow using MSAL.
+- **Type Safety**: Full Pydantic models for request/response validation.
+- **Error Handling**: Centralized exception handling and structured logging.
+- **Docker Ready**: Includes Dockerfile and Docker Compose setup.
+- **Testing**: Unit tests with pytest.
 
-- ✅ Autenticación OAuth 2.0 con Azure AD
-- ✅ Lectura de emails (Outlook)
-- ✅ Envío de emails
-- ✅ Gestión de calendario
-- ✅ Acceso a OneDrive (subir/descargar archivos)
-- ✅ Información del usuario
+## Project Structure
 
-## 📋 Requisitos Previos
+```
+src/
+├── api/                # API Endpoints
+│   └── v1/
+│       └── endpoints/  # Resource-specific routes (Auth, Users, Mail, etc.)
+├── core/               # Core functionality (Config, Logging, GraphClient)
+├── services/           # Business logic (AuthService, MailService, etc.)
+├── models/             # Pydantic models (Domain entities)
+└── main.py             # Application entry point
+```
 
-1. Cuenta de Microsoft 365 / Azure AD
-2. Aplicación registrada en Azure Portal
-3. Python 3.9+
+## Setup
 
-## ⚙️ Configuración Azure
+1. **Clone the repository**
+2. **Create .env file**
+   Copy `.env.example` to `.env` and fill in your Azure AD credentials.
+   ```env
+   CLIENT_ID=your_client_id
+   CLIENT_SECRET=your_client_secret
+   TENANT_ID=your_tenant_id
+   ```
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Run the application**
+   ```bash
+   uvicorn src.main:app --reload
+   ```
 
-1. Ve a [Azure Portal](https://portal.azure.com)
-2. Navega a **Azure Active Directory** > **App registrations**
-3. Click en **New registration**
-4. Configura:
-   - Name: `MS Graph Demo`
-   - Redirect URI: `http://localhost:8000/callback`
-5. Copia el **Application (client) ID** y **Directory (tenant) ID**
-6. En **Certificates & secrets**, crea un nuevo **Client secret**
-7. En **API permissions**, agrega:
-   - `User.Read`
-   - `Mail.Read`
-   - `Mail.Send`
-   - `Calendars.ReadWrite`
-   - `Files.ReadWrite`
+## API Documentation
 
-## 🛠️ Instalación
+Once running, access the interactive API docs at:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
 
+## Use Cases
+
+### Authentication
+- `/api/v1/auth/login`: Initiates OAuth flow.
+- `/api/v1/auth/callback`: Handles token exchange.
+
+### Users
+- `GET /api/v1/users/me`: Get current user profile.
+
+### Mail
+- `GET /api/v1/mail/`: List emails.
+- `POST /api/v1/mail/send`: Send an email.
+
+### Calendar
+- `GET /api/v1/calendar/`: List events.
+- `POST /api/v1/calendar/`: Create an event.
+
+### OneDrive
+- `GET /api/v1/drive/files`: List files.
+- `POST /api/v1/drive/files/upload`: Upload a file.
+
+## Testing
+
+Run tests with:
 ```bash
-# Clonar repositorio
-git clone https://github.com/270803ggiztheking-rgb/ms-graph-api-demo.git
-cd ms-graph-api-demo
-
-# Crear entorno virtual
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
-
-# Instalar dependencias
-pip install -r requirements.txt
-
-# Configurar variables de entorno
-cp .env.example .env
-# Editar .env con tus credenciales de Azure
+pytest
 ```
-
-## 🔐 Variables de Entorno
-
-```env
-CLIENT_ID=tu-client-id
-CLIENT_SECRET=tu-client-secret
-TENANT_ID=tu-tenant-id
-REDIRECT_URI=http://localhost:8000/callback
-```
-
-## 🚀 Uso
-
-```bash
-# Iniciar servidor
-uvicorn src.main:app --reload
-
-# Abrir navegador
-# http://localhost:8000
-```
-
-## 📚 Endpoints
-
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| GET | `/` | Página principal |
-| GET | `/login` | Iniciar autenticación OAuth |
-| GET | `/callback` | Callback de Azure AD |
-| GET | `/me` | Información del usuario |
-| GET | `/emails` | Listar emails |
-| POST | `/send-email` | Enviar email |
-| GET | `/calendar` | Eventos del calendario |
-| GET | `/files` | Archivos de OneDrive |
-
-## 📁 Estructura
-
-```
-ms-graph-api-demo/
-├── src/
-│   ├── __init__.py
-│   ├── main.py           # FastAPI app
-│   ├── auth.py           # OAuth 2.0 logic
-│   ├── graph_client.py   # Microsoft Graph client
-│   └── routes/
-│       ├── __init__.py
-│       ├── mail.py       # Email endpoints
-│       ├── calendar.py   # Calendar endpoints
-│       └── files.py      # OneDrive endpoints
-├── .env.example
-├── requirements.txt
-└── README.md
-```
-
-## 📄 Licencia
-
-MIT License
-
-## 👤 Autor
-
-**Gael L. Chulim G.**  
-Freelance Developer & Automation Specialist  
-[LinkedIn](https://www.linkedin.com/in/gael-chulim) | [GitHub](https://github.com/270803ggiztheking-rgb)
