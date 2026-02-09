@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Cases - Microsoft Graph API Demo</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/use-cases.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Prism.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i data-lucide="layout-grid" style="color: var(--primary-color);"></i>
+                    <span style="font-weight: 600; font-size: 18px;">Graph Demo</span>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">
+                            <i data-lucide="home" class="nav-icon"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="use-cases.html" class="nav-link active">
+                            <i data-lucide="briefcase" class="nav-icon"></i>
+                            Use Cases
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="auth.html" class="nav-link">
+                            <i data-lucide="key" class="nav-icon"></i>
+                            Authentication
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="user.html" class="nav-link">
+                            <i data-lucide="user" class="nav-icon"></i>
+                            User Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mail.html" class="nav-link">
+                            <i data-lucide="mail" class="nav-icon"></i>
+                            Mail
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="calendar.html" class="nav-link">
+                            <i data-lucide="calendar" class="nav-icon"></i>
+                            Calendar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="files.html" class="nav-link">
+                            <i data-lucide="file-text" class="nav-icon"></i>
+                            Files
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="docs.html" class="nav-link">
+                            <i data-lucide="book-open" class="nav-icon"></i>
+                            Documentation
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                <small style="color: var(--text-secondary);">
+                    Microsoft Graph API Demo<br>
+                    v1.0.0
+                </small>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content no-padding">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-content" data-aos="fade-up">
+                    <h1 class="hero-title">Transforming Business with Graph API</h1>
+                    <p class="hero-subtitle">Discover how industries are automating workflows, enhancing productivity, and creating seamless experiences.</p>
+                    <div class="hero-actions">
+                        <a href="#ecommerce" class="btn btn-light btn-lg">Explore Cases</a>
+                        <a href="https://github.com/270803ggiztheking-rgb/ms-graph-api-demo" target="_blank" class="btn btn-outline-light btn-lg">
+                            <i data-lucide="github" style="margin-right: 8px;"></i> View Repo
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sticky Sector Nav -->
+            <div class="sector-nav-container">
+                <nav class="sector-nav">
+                    <a href="#ecommerce" class="sector-link active" data-target="ecommerce">
+                        <i data-lucide="shopping-cart"></i> Ecommerce
+                    </a>
+                    <a href="#health" class="sector-link" data-target="health">
+                        <i data-lucide="heart-pulse"></i> Healthcare
+                    </a>
+                    <a href="#education" class="sector-link" data-target="education">
+                        <i data-lucide="graduation-cap"></i> Education
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Case Study 1: Ecommerce -->
+            <section id="ecommerce" class="case-section">
+                <div class="container">
+                    <div class="section-header" data-aos="fade-right">
+                        <span class="sector-badge">Retail & Logistics</span>
+                        <h2 class="section-title">RetailSync: Automating Fulfillment</h2>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="case-content" data-aos="fade-up">
+                            <h3>The Challenge</h3>
+                            <p>Manual order processing led to a <strong>24-hour delay</strong> in shipping confirmations. Support teams were overwhelmed with "Where is my order?" tickets.</p>
+                            
+                            <h3 class="mt-3">The Solution</h3>
+                            <p>Integrated Microsoft Graph to trigger automated workflows upon purchase:</p>
+                            <ul class="feature-list">
+                                <li><i data-lucide="check-circle"></i> <strong>Outlook API:</strong> Sends instant branded confirmations.</li>
+                                <li><i data-lucide="check-circle"></i> <strong>Calendar API:</strong> Schedules delivery slots for drivers.</li>
+                                <li><i data-lucide="check-circle"></i> <strong>Excel API:</strong> Updates inventory sheets in real-time.</li>
+                            </ul>
+                        </div>
+                        <div class="case-visual card" data-aos="fade-left">
+                            <div class="mermaid">
+                                graph TD
+                                    A[Customer Order] -->|Webhook| B(FastAPI Backend)
+                                    B -->|Graph API| C{Dispatch Actions}
+                                    C -->|Mail| D[Send Confirmation Email]
+                                    C -->|Calendar| E[Book Delivery Slot]
+                                    C -->|Excel| F[Update Stock Inventory]
+                                    E --> G[Driver Notification]
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metrics-container mt-3" data-aos="zoom-in">
+                        <div class="metric-card">
+                            <div class="metric-value">-40%</div>
+                            <div class="metric-label">Support Tickets</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">Real-time</div>
+                            <div class="metric-label">Inventory Sync</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">+25%</div>
+                            <div class="metric-label">Customer Satisfaction</div>
+                        </div>
+                    </div>
+
+                    <div class="code-snippet mt-3" data-aos="fade-up">
+                        <div class="code-header">
+                            <span>Python Implementation</span>
+                            <button class="btn-copy" onclick="copyCode('code-ecom')"><i data-lucide="copy"></i> Copy</button>
+                        </div>
+                        <pre><code id="code-ecom" class="language-python">
+async def schedule_delivery(order_id: str, delivery_date: datetime):
+    # Create event in Driver's Calendar using Graph API
+    event = {
+        "subject": f"Delivery: Order #{order_id}",
+        "start": {"dateTime": delivery_date.isoformat(), "timeZone": "UTC"},
+        "end": {"dateTime": (delivery_date + timedelta(hours=1)).isoformat(), "timeZone": "UTC"},
+        "location": {"displayName": "Customer Address"}
+    }
+    await graph_client.post(f"/users/{driver_email}/events", json=event)
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Case Study 2: Healthcare -->
+            <section id="health" class="case-section alt-bg">
+                <div class="container">
+                    <div class="section-header" data-aos="fade-right">
+                        <span class="sector-badge">Healthcare</span>
+                        <h2 class="section-title">MediGraph: Patient Portal Sync</h2>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="case-visual card" data-aos="fade-right">
+                            <canvas id="healthChart"></canvas>
+                        </div>
+                        <div class="case-content" data-aos="fade-left">
+                            <h3>The Challenge</h3>
+                            <p>Doctors managed schedules in Outlook, while patients booked via a separate web portal, causing frequent <strong>double-booking conflicts</strong>.</p>
+                            
+                            <h3 class="mt-3">The Solution</h3>
+                            <p>Bidirectional synchronization using Graph API:</p>
+                            <ul class="feature-list">
+                                <li><i data-lucide="check-circle"></i> <strong>GetSchedule API:</strong> Portal checks doctor's Outlook availability in real-time.</li>
+                                <li><i data-lucide="check-circle"></i> <strong>Online Meetings:</strong> Automatically generates Teams links for telehealth.</li>
+                            </ul>
+
+                            <div class="testimonial mt-3">
+                                <p>"We eliminated scheduling conflicts entirely and increased our appointment capacity by 15%."</p>
+                                <div class="author">- Dr. Sarah Chen, Clinic Director</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Case Study 3: Education -->
+            <section id="education" class="case-section">
+                <div class="container">
+                    <div class="section-header" data-aos="fade-right">
+                        <span class="sector-badge">Education</span>
+                        <h2 class="section-title">EduDrive: Paperless Classroom</h2>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="case-content" data-aos="fade-up">
+                            <h3>The Challenge</h3>
+                            <p>Teachers were buried in email attachments for homework submissions, making grading and version control impossible.</p>
+                            
+                            <h3 class="mt-3">The Solution</h3>
+                            <p>Automated assignment submission system:</p>
+                            <ul class="feature-list">
+                                <li><i data-lucide="check-circle"></i> <strong>OneDrive API:</strong> Students upload directly to a specific folder.</li>
+                                <li><i data-lucide="check-circle"></i> <strong>Permissions:</strong> Automatically grants read-only access to teachers.</li>
+                                <li><i data-lucide="check-circle"></i> <strong>Teams Notification:</strong> Alerts class channel of new submissions.</li>
+                            </ul>
+                        </div>
+                        <div class="case-visual card" data-aos="fade-left">
+                             <div class="mermaid">
+                                sequenceDiagram
+                                    participant Student
+                                    participant Portal
+                                    participant OneDrive
+                                    participant Teacher
+                                    
+                                    Student->>Portal: Upload Homework.pdf
+                                    Portal->>OneDrive: Create Upload Session
+                                    OneDrive-->>Portal: Upload URL
+                                    Portal->>OneDrive: Stream File Bytes
+                                    OneDrive-->>Portal: Success (File ID)
+                                    Portal->>OneDrive: Set Permissions (Teacher Read)
+                                    Portal->>Teacher: Notify via Teams
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metrics-container mt-3" data-aos="zoom-in">
+                        <div class="metric-card">
+                            <div class="metric-value">100%</div>
+                            <div class="metric-label">Paperless</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">Zero</div>
+                            <div class="metric-label">Lost Assignments</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="cta-section text-center">
+                <h2 style="color: white; margin-bottom: 20px;">Ready to build your solution?</h2>
+                <a href="docs.html" class="btn btn-light btn-lg">Get Started with Documentation</a>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../js/use-cases.js"></script>
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        // Initialize Mermaid
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+</body>
+</html>

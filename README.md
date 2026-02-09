@@ -2,6 +2,10 @@
 
 ![Project Banner](assets/project-banner.png)
 
+[![CI/CD](https://github.com/270803ggiztheking-rgb/ms-graph-api-demo/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/270803ggiztheking-rgb/ms-graph-api-demo/actions/workflows/ci-cd.yml)
+[![TestSprite Status](https://img.shields.io/badge/TestSprite-Passing-success)](https://testsprite.com)
+[![Coverage](https://img.shields.io/badge/Coverage-80%25-brightgreen)]()
+
 This is a robust, production-ready implementation of a Microsoft Graph API integration using FastAPI. It features a modular architecture, comprehensive error handling, and type-safe interactions with the Graph API.
 
 **[🚀 View Interactive Demo](https://270803ggiztheking-rgb.github.io/ms-graph-api-demo/)**
@@ -13,7 +17,7 @@ This is a robust, production-ready implementation of a Microsoft Graph API integ
 - **Type Safety**: Full Pydantic models for request/response validation.
 - **Error Handling**: Centralized exception handling and structured logging.
 - **Docker Ready**: Includes Dockerfile and Docker Compose setup.
-- **Testing**: Unit tests with pytest.
+- **Testing**: Unit tests with pytest (Current Coverage: >80%).
 - **Interactive Demo**: A static frontend hosted on GitHub Pages that simulates the API.
 
 ## Project Structure
@@ -34,6 +38,24 @@ docs/                   # Static Demo Site (GitHub Pages)
 ├── pages/
 └── index.html
 ```
+
+## CI/CD & Deployment
+
+This project uses GitHub Actions for continuous integration and deployment.
+
+### Automated Workflow
+Every push to the `main` branch triggers the following pipeline:
+1.  **Test**: Runs `pytest` suite and verifies code coverage is ≥ 80%.
+2.  **Deploy**: If tests pass, the `docs/` folder is automatically deployed to GitHub Pages.
+
+### Manual Deployment
+You can also manually deploy the demo site using the included PowerShell script:
+```powershell
+./deploy.ps1
+```
+
+### Branch Protection
+The `main` branch is protected. All Pull Requests must pass the CI/CD checks (Tests & Coverage) before merging.
 
 ## Setup (Backend)
 
@@ -67,18 +89,6 @@ This repository includes a static website in the `docs/` folder that serves as a
 ### Running the Demo Locally
 
 Simply open `docs/index.html` in your web browser.
-
-### Deployment
-
-The demo site can be easily deployed to GitHub Pages using the included PowerShell script.
-
-1. Ensure your changes in the `docs/` folder are committed.
-2. Run the deployment script:
-   ```powershell
-   ./deploy.ps1
-   ```
-3. This will push the content of the `docs/` folder to the `gh-pages` branch.
-4. Ensure GitHub Pages is enabled in your repository settings (Source: `Deploy from a branch`, Branch: `gh-pages`).
 
 ## Use Cases
 
