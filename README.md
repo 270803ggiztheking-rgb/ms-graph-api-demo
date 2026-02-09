@@ -1,5 +1,7 @@
 # Microsoft Graph API Demo (Refactored)
 
+![Project Banner](assets/project-banner.png)
+
 This is a robust, production-ready implementation of a Microsoft Graph API integration using FastAPI. It features a modular architecture, comprehensive error handling, and type-safe interactions with the Graph API.
 
 ## Features
