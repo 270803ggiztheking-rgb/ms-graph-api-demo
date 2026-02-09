@@ -1,7 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 
-
 class UserProfile(BaseModel):
     id: str
     displayName: Optional[str] = None
